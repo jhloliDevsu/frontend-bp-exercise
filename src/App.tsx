@@ -1,25 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import AddProductForm from "components/pages/AddProductForm";
+import EditProductForm from "components/pages/EditProductForm";
+import Products from "components/pages/Products";
+import { ROUTES } from "enums/routes";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={ROUTES.PRODUCTS} element={<Products />} />
+        <Route path={ROUTES.ADD_PRODUCT} element={<AddProductForm />} />
+        <Route path={ROUTES.EDIT_PRODUCT} element={<EditProductForm />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
