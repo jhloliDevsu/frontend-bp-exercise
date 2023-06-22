@@ -1,10 +1,10 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Button from "components/atoms/Button";
+import Logo from "components/atoms/Logo";
 
-describe("Button", () => {
+describe("Logo", () => {
   it("should be in the document", () => {
-    const component = render(<Button onClick={jest.fn()} text="Test" />);
+    const component = render(<Logo src="some-path" />);
 
     expect(component).toBeTruthy();
   });
