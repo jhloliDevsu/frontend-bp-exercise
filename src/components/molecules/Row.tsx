@@ -16,6 +16,7 @@ const padding = "10px 0px";
 
 const Row: React.FC<Props> = ({data}) => {
   const ref = useRef(null);
+  const contextRef = useRef(null);
   const [showContext, setShowContext] = useState(false);
   const [positionX, setPositionX] = useState<number>(0);
   const [positionY, setPositionY] = useState<number>(0);
@@ -32,8 +33,12 @@ const Row: React.FC<Props> = ({data}) => {
     setShowContext(!showContext);
   }
 
-  const handleClickOutside = () => {
-    setShowContext(false);
+  const handleClickOutside = (e: unknown) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    if (!ref.current.contains(e.target) && !contextRef.current.contains(e.target)) {
+      setShowContext(false);
+    }
   }
 
   const handleEdit = () => {
@@ -77,7 +82,11 @@ const Row: React.FC<Props> = ({data}) => {
         <div ref={ref}>
           <IconButton src="/images/dots.png" onClick={handleClick} width={32} />
         </div>
-        {showContext && <ContextMenu options={options} x={positionX} y={positionY} />}
+        {showContext && (
+          <div ref={contextRef}>
+            <ContextMenu options={options} x={positionX} y={positionY} />
+          </div>
+        )}
       </td>
     </tr>
   )

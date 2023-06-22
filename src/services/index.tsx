@@ -31,7 +31,7 @@ export const createProduct = async (product: Product) => {
 }
 
 export const updateProduct = async (product: Product) => {
-  await instance.post(URL_PRODUCTS, product);
+  await instance.put(URL_PRODUCTS, product);
 }
 
 export const deleteProduct = async (id: string) => {
